@@ -21,7 +21,7 @@
 
 <head>
     <?php include ("../plantillas/head.php"); ?>
-    <title>Mezcal | Clientes</title>
+    <title>Sanoil | Clientes</title>
 </head>
 
 <body>

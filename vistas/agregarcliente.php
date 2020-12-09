@@ -17,7 +17,7 @@
 
 <head>
     <?php include ("../plantillas/head.php"); ?>
-    <title>Mezcal | Agregar Nuevo Cliente</title>
+    <title>Sanoil | Agregar Nuevo Cliente</title>
 </head>
 
 <body>

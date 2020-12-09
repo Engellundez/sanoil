@@ -19,7 +19,7 @@
 
 <head>
     <?php include ("../plantillas/head.php"); ?>
-    <title>Mezcal | Nueva Venta</title>
+    <title>Sanoil | Nueva Venta</title>
 </head>
 
 <body>

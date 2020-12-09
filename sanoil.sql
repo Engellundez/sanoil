@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 09-12-2020 a las 07:07:14
+-- Tiempo de generación: 09-12-2020 a las 07:15:21
 -- Versión del servidor: 5.7.24
 -- Versión de PHP: 7.4.8
 
@@ -157,7 +157,8 @@ CREATE TABLE `rol_user` (
 --
 
 INSERT INTO `rol_user` (`user_id`, `rol_id`) VALUES
-(1, 1);
+(1, 1),
+(2, 1);
 
 -- --------------------------------------------------------
 
@@ -200,7 +201,8 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id`, `nombre`, `apellido_p`, `apellido_m`, `correo`, `password`, `fecha`, `mostrar`) VALUES
-(1, 'Angel David', 'Escutia', 'Lundez', 'blu_mr.conejo@hotmail.com', 'f87edceb31b76eea4b0c86578c2bdbd7bd9bbcbcb59ab35a7aee77220689bf33132ae2589f978d906a893ae9cd97326c998a5a872ccdb904036776e133e58761', '2020-12-08', 1);
+(1, 'Angel David', 'Escutia', 'Lundez', 'blu_mr.conejo@hotmail.com', 'f87edceb31b76eea4b0c86578c2bdbd7bd9bbcbcb59ab35a7aee77220689bf33132ae2589f978d906a893ae9cd97326c998a5a872ccdb904036776e133e58761', '2020-12-08', 1),
+(2, 'ad', 'mi', 'n', 'admin@gmail.com', '7e77279cb4b3e9ce20b50e853e466d5af7cd63faddca227c8ef7b6d5aaece35f340c1f35e9b468bebe73c29da1057bafa2790a5ec05176f3fb07cd3d9a43cb24', '2020-12-09', 1);
 
 -- --------------------------------------------------------
 
@@ -378,7 +380,7 @@ ALTER TABLE `tipo`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `ventas`
