@@ -1,0 +1,132 @@
+:root{
+    --blanco: #FFFFFF;
+    --gris: #EAEAEA;
+    --gris-medio: #D5D5D5;
+    --gris-obscuro: #858585;
+    --negro: #000000;
+
+    --obscuro-verdoso: rgb(5,32,43);
+    --verde-claro: rgb(75,209,160);
+    --verde-obscuro: rgb(43,204,158);
+}
+
+.sidebar{
+    visibility: hidden;
+    position: fixed;
+    width: 250px;
+    height: 100%;
+    background: var(--gris);
+    color: var(--negro);
+    outline: 1px solid var(--gris);
+    z-index: 10;
+    transition: all 0.8s;
+}
+
+.cambiarfondo{
+    visibility: visible;
+    background: var(--blanco);
+    outline: 1px solid var(--blanco);
+}
+
+.sidebar h2{
+    text-align: center;
+    margin: 0;
+    padding: 15.8px;
+    background: var(--gris);
+    outline: 1px solid var(--gris);
+}
+.sidebar ul{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar ul li{
+    position: relative;
+}
+
+.sidebar li{
+    outline: 1px solid var(--gris);
+    transition-property: border;
+    transition-duration: 0.3s;
+}
+
+.sidebar li:hover{
+    background: var(--gris-medio);
+    border-left: 5px solid var(--gris-obscuro);
+}
+
+.sidebar a{
+    display: block;
+    color: var(--negro);
+    text-decoration: none;
+    padding: 10px;
+}
+
+.sidebar ul ul{
+    display: none;
+}
+
+.sidebar ul li:hover > ul{
+    margin-left: 10px;
+    display: block;
+}
+
+.sidebar ul ul ul{
+    margin-left: 23px;
+    top: 0;
+}
+
+.contenido{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background: var(--gris);
+    padding: 0;
+    transition: all 0.4s;
+    box-sizing: border-box;
+    z-index: 20;
+}
+
+.menu-bar{
+    cursor: pointer;
+    margin: 15px;
+}
+
+.abrir{
+    transform: translateX(250px);
+}
+
+.cabecera{
+    position: fixed;
+    z-index: 30;
+    width: 100%;
+    background: var(--blanco);
+    outline: 1px solid var(--blanco);
+    transition: all 0.4s;
+    overflow: hidden;
+}
+
+.cambiarcabecera{
+    top: 0;
+    transform: translateX(250px);
+}
+
+.divmenu{
+    float: left;
+}
+
+.img2{
+    float: left;
+    margin: 10px;
+}
+
+.fecha{
+    float: right;
+    position: relative;
+    display: block;
+    margin: 15px;
+    margin-right: 110px;
+    text-align: right;
+}
+

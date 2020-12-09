@@ -1,0 +1,29 @@
+:root {
+    --blanco: #FFFFFF;
+    --gris: #EAEAEA;
+    --gris-medio: #D5D5D5;
+    --gris-obscuro: #858585;
+    --negro: #000000;
+    --negro-traslucido: rgba(0, 0, 0, .7);
+    --invisible: rgba(0, 0, 0, 0);
+    --rojo: red;
+
+    --obscuro-verdoso: rgb(5,32,43);
+    --verde-claro: rgb(75,209,160);
+    --verde-obscuro: rgb(43,204,158);
+}
+
+.formModal {
+    background: var(--blanco);
+    padding: 10px;
+}
+
+.modalh1{
+    color: #0E725D;
+    text-transform: uppercase;
+}
+
+.modalh2 {
+    text-transform: uppercase;
+    margin-top: 15px;
+}

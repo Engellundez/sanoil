@@ -1,0 +1,10 @@
+.footer{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    color: black;
+    text-align: center;
+    background: white;
+    width: 100%;
+    z-index: 40;
+}
