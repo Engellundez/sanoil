@@ -45,7 +45,7 @@
                 </thead>
                 <tbody align="center">
                     <?php 
-                        $query_ventas_paginado = mysqli_query($conexion, "SELECT * FROM ventas");
+                        $query_ventas_paginado = mysqli_query($conexion, "SELECT * FROM so_ventas");
                         $filas = mysqli_num_rows($query_ventas_paginado);
                         $numeroFilas = 5;
                         $conteo = $filas/$numeroFilas;
@@ -63,7 +63,7 @@
 
                         $inicio = ($page - 1) * $numeroFilas;
 
-                        $query_venta = mysqli_query($conexion, "SELECT * FROM ventas ORDER BY id DESC LIMIT $inicio,$numeroFilas");
+                        $query_venta = mysqli_query($conexion, "SELECT * FROM so_ventas ORDER BY id DESC LIMIT $inicio,$numeroFilas");
 
                         if($query_venta != NULL){
                             while($row_venta = mysqli_fetch_array($query_venta)){
@@ -73,9 +73,9 @@
                         <td>
                             <ul>
                                 <?php
-                                    $query_venta_cuanta = mysqli_query($conexion, "SELECT * FROM producto_venta WHERE codigo_venta = '".$row_venta['codigo_venta']."'");
+                                    $query_venta_cuanta = mysqli_query($conexion, "SELECT * FROM so_producto_venta WHERE codigo_venta = '".$row_venta['codigo_venta']."'");
                                     while($row_venta_cuenta = mysqli_fetch_array($query_venta_cuanta)){
-                                        $query_producto = mysqli_query($conexion, "SELECT * FROM productos WHERE id = '".$row_venta_cuenta['producto_id']."'");
+                                        $query_producto = mysqli_query($conexion, "SELECT * FROM so_productos WHERE id = '".$row_venta_cuenta['producto_id']."'");
                                         while($row_producto = mysqli_fetch_array($query_producto)){
                                             echo "<li>".$row_producto['nombre_producto']."</li>";
                                         }
@@ -86,7 +86,7 @@
                         <td>
                             <ul>
                                 <?php
-                                    $query_venta_cantidad = mysqli_query($conexion, "SELECT * FROM producto_venta WHERE codigo_venta = '".$row_venta['codigo_venta']."'");
+                                    $query_venta_cantidad = mysqli_query($conexion, "SELECT * FROM so_producto_venta WHERE codigo_venta = '".$row_venta['codigo_venta']."'");
                                     while($row_producto_cantidad = mysqli_fetch_array($query_venta_cantidad)){
                                         echo "<li>".$row_producto_cantidad['cantidad']."</li>";
                                     }
@@ -96,9 +96,9 @@
                         <td style="color: #2AB827">
                             <ul>
                                 <?php
-                                    $query_venta_precio = mysqli_query($conexion, "SELECT * FROM producto_venta WHERE codigo_venta = '".$row_venta['codigo_venta']."'");
+                                    $query_venta_precio = mysqli_query($conexion, "SELECT * FROM so_producto_venta WHERE codigo_venta = '".$row_venta['codigo_venta']."'");
                                     while($row_venta_precio = mysqli_fetch_array($query_venta_precio)){
-                                        $query_producto_precio = mysqli_query($conexion, "SELECT * FROM productos WHERE id = '".$row_venta_precio['producto_id']."'");
+                                        $query_producto_precio = mysqli_query($conexion, "SELECT * FROM so_productos WHERE id = '".$row_venta_precio['producto_id']."'");
                                         while($row_producto_precio = mysqli_fetch_array($query_producto_precio)){
                                             echo "<li>$".$row_producto_precio['precio']."</li>";
                                         }
@@ -109,7 +109,7 @@
                         <td style="color: #2AB827">
                             <ul>
                                 <?php
-                                    $query_subtotal = mysqli_query($conexion, "SELECT * FROM producto_venta WHERE codigo_venta = '".$row_venta['codigo_venta']."'");
+                                    $query_subtotal = mysqli_query($conexion, "SELECT * FROM so_producto_venta WHERE codigo_venta = '".$row_venta['codigo_venta']."'");
                                     while($row_subtotal = mysqli_fetch_array($query_subtotal)){
                                         echo "<li>$".$row_subtotal['precio_total']."</li>";
                                     }
@@ -127,14 +127,14 @@
                             ?>
                         </td>
                         <?php
-                            $query_factura = mysqli_query($conexion, "SELECT id FROM facturacion WHERE cliente_id = '".$row_venta['cliente_id']."'");
+                            $query_factura = mysqli_query($conexion, "SELECT id FROM so_facturacion WHERE cliente_id = '".$row_venta['cliente_id']."'");
                             $row_factura = mysqli_fetch_array($query_factura);
                             if($row_factura == NULL){
                         ?>
                         <td>
                             <?php
                             $id_cliente = $row_venta['cliente_id'];
-                            $query_nombre = mysqli_query($conexion, "SELECT nombre FROM clientes WHERE id = '$id_cliente'");
+                            $query_nombre = mysqli_query($conexion, "SELECT nombre FROM so_clientes WHERE id = '$id_cliente'");
                             $nombre_cliente = mysqli_fetch_assoc($query_nombre);
                             ?>
                             <button href="#" class="btn btn-warning btn-sm registrar_factura" id_cliente="<?php echo $id_cliente; ?>" nombre_cliente="<?php echo $nombre_cliente['nombre'].' '.$nombre_cliente['apellido_p'].' '.$nombre_cliente['apellido_m']; ?>">Registar factura</button>

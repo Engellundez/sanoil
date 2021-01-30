@@ -191,7 +191,7 @@ $pdf->Cell(30, 7, utf8_decode('Precio'),1,0,'C',0);
 $pdf->Cell(0, 7, utf8_decode('Producto'),1,1,'C',0);
 
 $pdf->SetFont('Arial','',$ajustes['size_body']);
-$query_productos = mysqli_query($conexion, "SELECT * FROM productos ORDER BY $orden $acomodo");
+$query_productos = mysqli_query($conexion, "SELECT * FROM so_productos ORDER BY $orden $acomodo");
 
 // while($row_productos = mysqli_fetch_array($query_productos)){
     $pdf->Cell(20, 7, utf8_decode('COD'),1,0,'C',0);
@@ -264,7 +264,7 @@ $pdf->Cell(60, 7, utf8_decode('Quien vendio'),1,0,'C',0);
 $pdf->Cell(0, 7, utf8_decode('Comprador'),1,1,'C',0);
 
 $pdf->SetFont('Arial','',$ajustes['size_body']);
-$query_venta = mysqli_query($conexion, "SELECT v.fecha, v.total,f.descripcion, u.name AS vendedor, c.nombre FROM ventas AS v INNER JOIN fpagos AS f INNER JOIN users AS u INNER JOIN clientes AS c WHERE v.fpago_id = f.id AND v.user_id = u.id AND v.cliente_id = c.id ORDER BY v.fecha $acomodo");
+$query_venta = mysqli_query($conexion, "SELECT v.fecha, v.total,f.descripcion, u.name AS vendedor, c.nombre FROM so_ventas AS v INNER JOIN fpagos AS f INNER JOIN users AS u INNER JOIN so_clientes AS c WHERE v.fpago_id = f.id AND v.user_id = u.id AND v.cliente_id = c.id ORDER BY v.fecha $acomodo");
 
 if($ajustes['orientacion_hoja'] == 1){
     // while($row_venta = mysqli_fetch_array($query_venta)){
@@ -311,7 +311,7 @@ if($ajustes['orientacion_hoja'] == 1){
 }
 
 $pdf->SetFont('Arial','',$ajustes['size_body']);
-$query_cliente = mysqli_query($conexion, "SELECT c.nombre, c.telefono, a.Tipo_cliente, u.name FROM clientes AS c INNER JOIN comicions AS a INNER JOIN users AS u WHERE c.comision_id = a.id AND c.user_id = u.id ORDER BY c.fecha_registro $acomodo");
+$query_cliente = mysqli_query($conexion, "SELECT c.nombre, c.telefono, a.Tipo_cliente, u.name FROM so_clientes AS c INNER JOIN comicions AS a INNER JOIN users AS u WHERE c.comision_id = a.id AND c.user_id = u.id ORDER BY c.fecha_registro $acomodo");
 
 if($ajustes['orientacion_hoja'] == 1){
     while($row_cliente = mysqli_fetch_array($query_cliente)){
@@ -357,7 +357,7 @@ if($ajustes['orientacion_hoja'] == 1){
 }
 
 $pdf->SetFont('Arial','',$ajustes['size_body']);
-$query_cliente = mysqli_query($conexion, "SELECT c.nombre, c.telefono, a.Tipo_cliente, u.name FROM clientes AS c INNER JOIN comicions AS a INNER JOIN users AS u WHERE c.comision_id = a.id AND c.user_id = u.id ORDER BY c.fecha_registro $acomodo");
+$query_cliente = mysqli_query($conexion, "SELECT c.nombre, c.telefono, a.Tipo_cliente, u.name FROM so_clientes AS c INNER JOIN comicions AS a INNER JOIN users AS u WHERE c.comision_id = a.id AND c.user_id = u.id ORDER BY c.fecha_registro $acomodo");
 
 if($ajustes['orientacion_hoja'] == 1){
     while($row_cliente = mysqli_fetch_array($query_cliente)){

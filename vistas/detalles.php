@@ -30,7 +30,7 @@
                 <h1>Detalles de la venta con folio de venta <span class="span"><?php echo $id; ?></span></h1>
                 <?php
                 include("../conexion/conexion.php");
-                $resventa = mysqli_query($conexion, "SELECT * FROM ventas WHERE id = ".$id);
+                $resventa = mysqli_query($conexion, "SELECT * FROM so_ventas WHERE id = ".$id);
                 $rowventa = mysqli_fetch_array($resventa);
             ?>
                 <table class="table table-striped table-dark">
@@ -62,12 +62,12 @@
                             <td>
                                 <ul>
                                     <?php
-                                    $resventacuenta = mysqli_query($conexion, "SELECT * FROM producto_venta where codigo_venta = '".$rowventa['codigo_venta']."'");
+                                    $resventacuenta = mysqli_query($conexion, "SELECT * FROM so_producto_venta where codigo_venta = '".$rowventa['codigo_venta']."'");
                                     while($rowventacuenta = mysqli_fetch_array($resventacuenta)){
                                 ?>
                                     <li>
                                         <?php 
-                                            $productos = "SELECT * FROM productos where id = '".$rowventacuenta['producto_id']."'";
+                                            $productos = "SELECT * FROM so_productos where id = '".$rowventacuenta['producto_id']."'";
                                             $resproducto = mysqli_query($conexion, $productos);
                                             $rowproducto = mysqli_fetch_array($resproducto);
                                             echo $rowproducto['nombre_producto'].", Codigo: ";
@@ -93,7 +93,7 @@
                             <td>
                                 <ul>
                                     <?php
-                                    $resventacuenta2 = mysqli_query($conexion, "SELECT * FROM producto_venta where codigo_venta = '".$rowventa['codigo_venta']."'");
+                                    $resventacuenta2 = mysqli_query($conexion, "SELECT * FROM so_producto_venta where codigo_venta = '".$rowventa['codigo_venta']."'");
                                     while($rowventacuenta2 = mysqli_fetch_array($resventacuenta2)){
                                 ?>
                                     <li>
@@ -101,7 +101,7 @@
                                             $<?php echo $rowventacuenta2['precio_total']; ?>
                                         </p>
                                         <?php
-                                            $productos2 = "SELECT * FROM productos where id = '".$rowventacuenta2['producto_id']."'";
+                                            $productos2 = "SELECT * FROM so_productos where id = '".$rowventacuenta2['producto_id']."'";
                                             $resproducto2 = mysqli_query($conexion, $productos2);
                                             while($rowproducto2 = mysqli_fetch_array($resproducto2)){
                                         ?>
@@ -147,7 +147,7 @@
                             </td>
                             <td>
                                 <?php
-                                $vendio = "SELECT * FROM usuarios where id = '".$rowventa['vendedor_id']."'";
+                                $vendio = "SELECT * FROM so_usuarios where id = '".$rowventa['vendedor_id']."'";
                                 $resvendio = mysqli_query($conexion, $vendio);
                                 $rowvendio = mysqli_fetch_array($resvendio);
 
@@ -161,7 +161,7 @@
                             </td>
                             <td>
                                 <?php
-                                $cliente = "SELECT * FROM clientes where id = '".$rowventa['cliente_id']."'";
+                                $cliente = "SELECT * FROM so_clientes where id = '".$rowventa['cliente_id']."'";
                                 $rescliente = mysqli_query($conexion, $cliente);
                                 $rowcliente = mysqli_fetch_array($rescliente);
                             ?>
@@ -195,7 +195,7 @@
                             </td>
                             <td>
                                 <?php
-                                $comision = "SELECT * FROM clientes AS c INNER JOIN tipo AS t WHERE c.id = '".$rowventa['cliente_id']."'";
+                                $comision = "SELECT * FROM so_clientes AS c INNER JOIN so_tipo AS t WHERE c.id = '".$rowventa['cliente_id']."'";
                                 $rescomision = mysqli_query($conexion, $comision);
                                 $rowcomision = mysqli_fetch_array($rescomision);
                             ?>
@@ -214,7 +214,7 @@
                                 if($rowventa['factura'] == 0){
                                     echo "No ocupa Factura";
                                 }elseif($rowventa['factura']){
-                                    $factura = "SELECT id FROM facturacion WHERE cliente_id = '".$rowventa['cliente_id']."'";
+                                    $factura = "SELECT id FROM so_facturacion WHERE cliente_id = '".$rowventa['cliente_id']."'";
                                     $resfactura = mysqli_query($conexion, $factura);
                                     $rowfactura = mysqli_fetch_array($resfactura);
                                     if($rowfactura == NULL){

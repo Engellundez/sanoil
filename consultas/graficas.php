@@ -21,7 +21,7 @@
     if(!empty($_POST)){
         $action = $_POST['action'];
         if($action == 'GraficaLineal'){
-            $queryVenta= mysqli_query($conexion, "SELECT fecha, SUM(total_venta) AS total FROM ventas GROUP BY fecha ORDER BY fecha ASC");
+            $queryVenta= mysqli_query($conexion, "SELECT fecha, SUM(total_venta) AS total FROM so_ventas GROUP BY fecha ORDER BY fecha ASC");
             $lineaX = array(); //fecha
             $lineaY = array(); //monto
         
@@ -35,7 +35,7 @@
             echo json_encode($lineaX)." ".json_encode($lineaY);
             exit;
         }elseif($action == 'GraficaBarras'){
-            $queryProducto= mysqli_query($conexion, "SELECT p.codigo_producto, SUM(pv.cantidad) AS cantidad FROM producto_venta AS pv INNER JOIN productos AS p WHERE pv.producto_id = p.id GROUP BY producto_id ORDER BY producto_id ASC");
+            $queryProducto= mysqli_query($conexion, "SELECT p.codigo_producto, SUM(pv.cantidad) AS cantidad FROM so_producto_venta AS pv INNER JOIN so_productos AS p WHERE pv.producto_id = p.id GROUP BY producto_id ORDER BY producto_id ASC");
             $productoX = array(); //producto
             $productoY = array(); //cantidad
         

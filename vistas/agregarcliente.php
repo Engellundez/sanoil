@@ -75,7 +75,7 @@
                         <select class="form-control centrar" required name="tipo_id" id="tipo_id">
                             <option value="">Escoge una Opción</option>
                             <?php 
-                                $rescomi = mysqli_query($conexion, "SELECT * FROM tipo");
+                                $rescomi = mysqli_query($conexion, "SELECT * FROM so_tipo");
                                 while($rowcomi = mysqli_fetch_array($rescomi)){
                                     ?>
                                 <option value="<?php echo $rowcomi['id']; ?>"><?php echo $rowcomi['tipo_cliente']." con ".$rowcomi['descuento']."% de descuento"; ?></option>

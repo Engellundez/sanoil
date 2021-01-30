@@ -45,7 +45,7 @@
                 </thead>
                 <tbody align="center">
                     <?php 
-                        $paginado = mysqli_query($conexion, "SELECT * FROM clientes ORDER BY nombre ASC");
+                        $paginado = mysqli_query($conexion, "SELECT * FROM so_clientes ORDER BY nombre ASC");
                         $filas = mysqli_num_rows($paginado);
                         $numfilas = 10;
                         $conteo = $filas/$numfilas;
@@ -63,7 +63,7 @@
 
                         $inicio = ($page - 1) * $numfilas;
 
-                        $rescliente = mysqli_query($conexion, "SELECT * FROM clientes ORDER BY nombre ASC LIMIT $inicio,$numfilas");
+                        $rescliente = mysqli_query($conexion, "SELECT * FROM so_clientes ORDER BY nombre ASC LIMIT $inicio,$numfilas");
                         if($rescliente != NULL){
                             while($rowcliente = mysqli_fetch_array($rescliente)){
                     ?>
@@ -74,7 +74,7 @@
                         <td><?php echo $rowcliente['correo']; ?></td>
                         <td><?php echo $rowcliente['negocio']=='' ? 'No proporcionado' : $rowcliente['negocio']; ?></td>
                         <?php                
-                            $resfactura = mysqli_query($conexion, "SELECT * FROM facturacion WHERE cliente_id = ".$rowcliente['id']);
+                            $resfactura = mysqli_query($conexion, "SELECT * FROM so_facturacion WHERE cliente_id = ".$rowcliente['id']);
                             $rowfactura = mysqli_fetch_array($resfactura);
                             if($rowfactura == NULL){
                         ?>
@@ -89,7 +89,7 @@
                         </td>
                         <?php
                             }
-                            $tipoclien = "SELECT * FROM tipo WHERE id = ".$rowcliente['tipo_id'];
+                            $tipoclien = "SELECT * FROM so_tipo WHERE id = ".$rowcliente['tipo_id'];
                             $restipoclie = mysqli_query($conexion, $tipoclien);
                             $rowtipoclie = mysqli_fetch_array($restipoclie);
                         ?>

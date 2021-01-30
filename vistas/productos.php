@@ -50,7 +50,7 @@
                 </thead>
                 <tbody>
                     <?php
-                        $pruductos_query_total = mysqli_query($conexion, "SELECT * FROM productos WHERE mostrar = '1' ORDER BY nombre_producto");
+                        $pruductos_query_total = mysqli_query($conexion, "SELECT * FROM so_productos WHERE mostrar = '1' ORDER BY nombre_producto");
                         $filas = mysqli_num_rows($pruductos_query_total);
                         $mostrarFilas = 4;
                         $conteo = $filas/$mostrarFilas;
@@ -68,7 +68,7 @@
 
                         $inicio = ($page-1) * $mostrarFilas;
 
-                        $pruductos_query = mysqli_query($conexion, "SELECT * FROM productos WHERE mostrar = '1' ORDER BY nombre_producto ASC LIMIT $inicio,$mostrarFilas");
+                        $pruductos_query = mysqli_query($conexion, "SELECT * FROM so_productos WHERE mostrar = '1' ORDER BY nombre_producto ASC LIMIT $inicio,$mostrarFilas");
                         
                         if($pruductos_query != NULL){
                             while($producto = mysqli_fetch_array($pruductos_query)){

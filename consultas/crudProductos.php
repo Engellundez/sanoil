@@ -26,7 +26,7 @@
 
             if($producto != '' || $codigo != '' || $descripcion != '' || $precio != '' || $cantidad != '' || $mg != '')
             {
-                $query_add_product = mysqli_query($conexion, "INSERT INTO productos (id, codigo_producto, nombre_producto, cantidad, descripcion, precio, mililitros, mostrar) VALUES (NULL, '$codigo', '$producto', '$cantidad', '$descripcion', '$precio', '$mg', '1')");
+                $query_add_product = mysqli_query($conexion, "INSERT INTO so_productos (id, codigo_producto, nombre_producto, cantidad, descripcion, precio, mililitros, mostrar) VALUES (NULL, '$codigo', '$producto', '$cantidad', '$descripcion', '$precio', '$mg', '1')");
 
                 if($query_add_product){
                     echo "success";
@@ -40,7 +40,7 @@
         }elseif($action == 'Passwordforeditquery'){
             $producto_id = $_POST['producto_Id'];
 
-            $query_producto = mysqli_query($conexion, "SELECT * FROM productos WHERE id = '$producto_id' AND mostrar = 1");
+            $query_producto = mysqli_query($conexion, "SELECT * FROM so_productos WHERE id = '$producto_id' AND mostrar = 1");
             $resultado_producto = mysqli_num_rows($query_producto);
 
             if($resultado_producto > 0){
@@ -61,7 +61,7 @@
                 $cantidad       = $_POST['cantidad'];
                 $mililitros     = number_format($_POST['mililitros'], 3, ".", "");
 
-                $query_edit_product = mysqli_query($conexion, "UPDATE productos SET nombre_producto = '$producto', codigo_producto = '$codigo', descripcion = '$descripcion', precio = '$precio', cantidad = '$cantidad', mililitros = '$mililitros' WHERE id = '$producto_id' AND mostrar = '1'");
+                $query_edit_product = mysqli_query($conexion, "UPDATE so_productos SET nombre_producto = '$producto', codigo_producto = '$codigo', descripcion = '$descripcion', precio = '$precio', cantidad = '$cantidad', mililitros = '$mililitros' WHERE id = '$producto_id' AND mostrar = '1'");
 
                 if($query_edit_product){
                     echo "success";
@@ -77,7 +77,7 @@
             }
         }elseif($action == 'Passwordfordeletequery'){
             $id_producto = $_POST['id'];
-            $query_delete = mysqli_query($conexion, "UPDATE productos SET mostrar = 0 WHERE id = '$id_producto'");            
+            $query_delete = mysqli_query($conexion, "UPDATE so_productos SET mostrar = 0 WHERE id = '$id_producto'");            
             if($query_delete){
                 echo "success";
                 exit;
@@ -93,12 +93,12 @@
                 echo "menor";
                 exit;
             }else{
-                $query_producto = mysqli_query($conexion, "SELECT * FROM productos WHERE id = '$id_producto'");
+                $query_producto = mysqli_query($conexion, "SELECT * FROM so_productos WHERE id = '$id_producto'");
                 $row_producto = mysqli_fetch_assoc($query_producto);
                 $cantidad_actual = $row_producto['cantidad'];
                 $cantidad_actualizada = $cantidad_actual + $cantidad_extra;
                 
-                $query_upd_producto = mysqli_query($conexion, "UPDATE productos SET cantidad = '$cantidad_actualizada' WHERE id = '$id_producto'");
+                $query_upd_producto = mysqli_query($conexion, "UPDATE so_productos SET cantidad = '$cantidad_actualizada' WHERE id = '$id_producto'");
                 if($query_upd_producto){
                     echo "success";
                     exit;

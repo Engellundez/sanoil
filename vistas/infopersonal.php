@@ -27,7 +27,7 @@
         <div class="container separacion peque">
         <?php
             include("../conexion/conexion.php");
-            $resuser = mysqli_query($conexion, "SELECT * FROM usuarios WHERE id = ".$id);
+            $resuser = mysqli_query($conexion, "SELECT * FROM so_usuarios WHERE id = ".$id);
             $rowuser = mysqli_fetch_array($resuser);
         ?>
             <div class="input-group input-group-sm mb-3">

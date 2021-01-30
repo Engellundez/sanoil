@@ -58,7 +58,7 @@
         // }else
         if($action == 'actualizar contrasena'){
             if(!empty($_POST['contrasenia']) && !empty($_POST['nueva_contrasenia']) && !empty($_POST['repite_nueva_contrasenia'])){
-                $query = mysqli_query($conexion, "SELECT * FROM usuarios WHERE id = '$id'");
+                $query = mysqli_query($conexion, "SELECT * FROM so_usuarios WHERE id = '$id'");
                 $row_user = mysqli_fetch_assoc($query);
                 $pass = $row_user['password'];
                 $apass = hash('whirlpool', $_POST['contrasenia']);
@@ -71,7 +71,7 @@
                             echo "son iguales";
                             exit;
                         }else{
-                            $upd_query = mysqli_query($conexion, "UPDATE usuarios SET password = '$anpass' WHERE id = '$id'");
+                            $upd_query = mysqli_query($conexion, "UPDATE so_usuarios SET password = '$anpass' WHERE id = '$id'");
                             if($upd_query){
                                 echo "success";
                                 exit;

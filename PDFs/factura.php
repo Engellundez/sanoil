@@ -16,7 +16,7 @@ $indicador_venta = $_GET['indicador'];
 require('../libreria/fpdf/fpdf.php');
 include('../conexion/conexion.php');
 
-$query_venta = mysqli_query($conexion, "SELECT * FROM ventas WHERE id = '$id_venta'");
+$query_venta = mysqli_query($conexion, "SELECT * FROM so_ventas WHERE id = '$id_venta'");
 $venta = mysqli_fetch_assoc($query_venta);
 
 $fecha_s = $venta['fecha'];
@@ -59,7 +59,7 @@ class PDF extends FPDF
     {
         $id_venta = $_GET['id'];
         include('../conexion/conexion.php');
-        $query_venta = mysqli_query($conexion, "SELECT * FROM ventas WHERE id = '$id_venta'");
+        $query_venta = mysqli_query($conexion, "SELECT * FROM so_ventas WHERE id = '$id_venta'");
         $venta = mysqli_fetch_assoc($query_venta);
 
         $fecha_s = $venta['fecha'];
@@ -122,7 +122,7 @@ class PDF extends FPDF
         $this->Cell(0,10,utf8_decode('Página ').$this->PageNo().'/{nb}',0,0,'C');
     }
 }
-$query_venta = mysqli_query($conexion, "SELECT v.fecha, v.total, v.autorizauser_id, u.name, c.nombre, c.correo, v.factura, v.comision_id, v.fpago_id, v.CVyFP, v.descripcion, v.devoluciones FROM ventas AS v INNER JOIN clientes AS c INNER JOIN users AS u WHERE v.id = '$id_venta' AND v.cliente_id = c.id AND v.user_id = u.id");
+$query_venta = mysqli_query($conexion, "SELECT v.fecha, v.total, v.autorizauser_id, u.name, c.nombre, c.correo, v.factura, v.comision_id, v.fpago_id, v.CVyFP, v.descripcion, v.devoluciones FROM so_ventas AS v INNER JOIN so_clientes AS c INNER JOIN users AS u WHERE v.id = '$id_venta' AND v.cliente_id = c.id AND v.user_id = u.id");
 $row_venta = mysqli_fetch_assoc($query_venta);
 $cliente = $row_venta['nombre'];
 $correo = $row_venta['correo'];
@@ -147,7 +147,7 @@ $pdf->Cell(100,10,'Concepto/Producto',1,0,'C',0);
 $pdf->Cell(28,10,'Precio',1,0,'C',0);
 $pdf->Cell(0,10,'Importe',1,1,'C',0);
 $pdf->SetFont('Arial','','12');
-$query_productos = mysqli_query($conexion, "SELECT v.cantidad, p.producto, v.total, v.vendedor_id, p.precio, p.descripcion, p.codigo_producto FROM venta_cuentas AS v INNER JOIN productos AS p WHERE v.indicador_venta = '$indicador_venta' AND v.producto_id = p.id");
+$query_productos = mysqli_query($conexion, "SELECT v.cantidad, p.producto, v.total, v.vendedor_id, p.precio, p.descripcion, p.codigo_producto FROM venta_cuentas AS v INNER JOIN so_productos AS p WHERE v.indicador_venta = '$indicador_venta' AND v.producto_id = p.id");
 while($row_productos = mysqli_fetch_array($query_productos)){
     $pdf->Cell(30,10,utf8_decode($row_productos['cantidad']),1,0,'C',0);
     $pdf->Cell(100,10,utf8_decode($row_productos['producto']),1,0,'C',0);

@@ -30,13 +30,13 @@
             $factura = $_POST['factura'];
             $tipo_id = $_POST['tipo_id'];
 
-            $query_buscar_correo = mysqli_query($conexion, "SELECT * FROM clientes WHERE correo = '$correo'");
+            $query_buscar_correo = mysqli_query($conexion, "SELECT * FROM so_clientes WHERE correo = '$correo'");
             $fila_correo = mysqli_num_rows($query_buscar_correo);
             
             if($fila_correo == NULL){
-                $query_nuevo_cliente = mysqli_query($conexion, "INSERT INTO clientes (id, nombre, apellido_p, apellido_m, direccion, telefono, correo, negocio, tipo_id, fecha) VALUES (NULL, '$nombre', '$apellido_p', '$apellido_m', '$direccion', '$telefono', '$correo', '$negocio', '$tipo_id', '$fecha')");
+                $query_nuevo_cliente = mysqli_query($conexion, "INSERT INTO so_clientes (id, nombre, apellido_p, apellido_m, direccion, telefono, correo, negocio, tipo_id, fecha) VALUES (NULL, '$nombre', '$apellido_p', '$apellido_m', '$direccion', '$telefono', '$correo', '$negocio', '$tipo_id', '$fecha')");
 
-                $query_verificar = mysqli_query($conexion, "SELECT * FROM clientes WHERE nombre = '$nombre' AND correo = '$correo'");
+                $query_verificar = mysqli_query($conexion, "SELECT * FROM so_clientes WHERE nombre = '$nombre' AND correo = '$correo'");
                 $fila_verificaca = mysqli_num_rows($query_verificar);
 
                 if($fila_verificaca != NULL){
@@ -57,7 +57,7 @@
                 exit;
             }
         // }elseif($action == 'registrar factura'){
-        //     $query_ultimo_cliente = mysqli_query($conexion, "SELECT * FROM clientes ORDER BY id DESC LIMIT 1");
+        //     $query_ultimo_cliente = mysqli_query($conexion, "SELECT * FROM so_clientes ORDER BY id DESC LIMIT 1");
         //     $ultimo_cliente = mysqli_fetch_assoc($query_ultimo_cliente);
 
         //     $id_utlimo_cliente = $ultimo_cliente['id'];
@@ -88,7 +88,7 @@
             $telefono = $_POST['telefono'];
             $id_cliente = $_POST['id_cliente'];
 
-            $query_agregar_factura = mysqli_query($conexion, "INSERT INTO facturacion (id, cliente_id, razon_social, rfc, domicilio_fiscal, correo, telefono) VALUES (NULL, '$id_cliente', '$razon_social', '$rfc', '$domicilio_fiscal', '$correo', '$telefono')");
+            $query_agregar_factura = mysqli_query($conexion, "INSERT INTO so_facturacion (id, cliente_id, razon_social, rfc, domicilio_fiscal, correo, telefono) VALUES (NULL, '$id_cliente', '$razon_social', '$rfc', '$domicilio_fiscal', '$correo', '$telefono')");
 
             if($query_agregar_factura){
                 echo "success";
@@ -100,7 +100,7 @@
         }elseif($action == 'visualizar factura'){
             $id_cliente = $_POST['id_cliente'];
             
-            $query_ver_factura = mysqli_query($conexion, "SELECT * FROM clientes AS cliente INNER JOIN facturacion AS fac WHERE fac.cliente_id = '$id_cliente' AND cliente.id = '$id_cliente'");
+            $query_ver_factura = mysqli_query($conexion, "SELECT * FROM so_clientes AS cliente INNER JOIN so_facturacion AS fac WHERE fac.cliente_id = '$id_cliente' AND cliente.id = '$id_cliente'");
             $data = mysqli_fetch_assoc($query_ver_factura);
 
             echo json_encode($data, JSON_UNESCAPED_UNICODE);
@@ -115,7 +115,7 @@
             $correo     = $_POST['correo'];
             $negocio    = $_POST['negocio'];
             if($id_cliente != '' && $nombre != '' && $correo != ''){
-                $query_editar_cliente = mysqli_query($conexion, "UPDATE clientes SET nombre= '$nombre', apellido_p = '$apellido_p', apellido_m = '$apellido_m', direccion= '$direccion', telefono='$telefono', correo='$correo', negocio='$negocio' WHERE id = '$id_cliente'");
+                $query_editar_cliente = mysqli_query($conexion, "UPDATE so_clientes SET nombre= '$nombre', apellido_p = '$apellido_p', apellido_m = '$apellido_m', direccion= '$direccion', telefono='$telefono', correo='$correo', negocio='$negocio' WHERE id = '$id_cliente'");
                 if($query_editar_cliente){
                     echo "success",
                     exit;

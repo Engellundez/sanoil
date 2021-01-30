@@ -1,5 +1,5 @@
 <?php
-    $query = mysqli_query($conexion, "SELECT r.id AS id_rol, r.rol AS rol FROM usuarios AS u INNER JOIN rol_user AS ru INNER JOIN roles AS r WHERE u.id = '$id' AND ru.user_id = '$id' AND ru.rol_id = r.id");
+    $query = mysqli_query($conexion, "SELECT r.id AS id_rol, r.rol AS rol FROM so_usuarios AS u INNER JOIN so_rol_user AS ru INNER JOIN so_roles AS r WHERE u.id = '$id' AND ru.user_id = '$id' AND ru.rol_id = r.id");
     $row_rol = mysqli_fetch_assoc($query);
     $rol_id = $row_rol['id_rol'];
     $rol_nombre = $row_rol['rol'];
@@ -40,7 +40,7 @@
             </li>
             <li>
                 <?php
-                    $mi_revicion_rol = mysqli_query($conexion, "SELECT * FROM roles WHERE id = ".$rol_id);
+                    $mi_revicion_rol = mysqli_query($conexion, "SELECT * FROM so_roles WHERE id = ".$rol_id);
                     $mi_respuesta_rol = mysqli_fetch_array($mi_revicion_rol);
                 ?>
                 <a><img src="../img/icons/estrella.png" class="icon">Rango: <?php echo $mi_respuesta_rol['rol']; ?></a>

@@ -40,7 +40,7 @@
                             <select name="producto_id" id="producto_id" required class="form-control busqueda">
                                 <option value="">Escoge Alguna Opción</option>
                                 <?php
-                                    $query_productos = mysqli_query($conexion ,"SELECT * FROM productos WHERE mostrar = '1' ORDER BY nombre_producto ASC");
+                                    $query_productos = mysqli_query($conexion ,"SELECT * FROM so_productos WHERE mostrar = '1' ORDER BY nombre_producto ASC");
                                     while($producto = mysqli_fetch_array($query_productos)){
                                         if($producto['cantidad'] >= 1){
                                 ?>
@@ -63,7 +63,7 @@
                 </form>
                 <div class="container my-2" id="Tabla_productos">
                     <?php
-                        $query_c_venta = mysqli_query($conexion, "SELECT COUNT(id) AS c_ventas FROM venta_empleado WHERE vendedor_id = '$id'");
+                        $query_c_venta = mysqli_query($conexion, "SELECT COUNT(id) AS c_ventas FROM so_venta_empleado WHERE vendedor_id = '$id'");
                         $row_cantidad_ventas = mysqli_fetch_assoc($query_c_venta);
                         $canti_venta = $row_cantidad_ventas['c_ventas'];
                         $codigo_venta = "$id/venta/$canti_venta/registro";
@@ -81,14 +81,14 @@
                         </thead>
                         <tbody>
                             <?php
-                                $query_venta_cuenta = mysqli_query($conexion, "SELECT * FROM producto_venta WHERE vendedor_id = '$id' AND codigo_venta = '$codigo_venta'");
+                                $query_venta_cuenta = mysqli_query($conexion, "SELECT * FROM so_producto_venta WHERE vendedor_id = '$id' AND codigo_venta = '$codigo_venta'");
                                 while($cuenta = mysqli_fetch_array($query_venta_cuenta)){
                             ?>
                                 <tr>
                                     <th scope="row"><?php echo $cuenta['cantidad']; ?></th>
                                     <td>
                                         <?php
-                                            $query_producto_cuenta = mysqli_query($conexion, "SELECT * FROM productos WHERE id =".$cuenta['producto_id']);
+                                            $query_producto_cuenta = mysqli_query($conexion, "SELECT * FROM so_productos WHERE id =".$cuenta['producto_id']);
                                             $row_producto_cuenta = mysqli_fetch_array($query_producto_cuenta);
                                             echo $row_producto_cuenta['nombre_producto'];
                                         ?>
@@ -117,7 +117,7 @@
                 </div>
                 
                 <?php
-                    $query_add_product_ventas = mysqli_query($conexion, "SELECT SUM(precio_total) AS total FROM producto_venta WHERE vendedor_id = '$id' AND codigo_venta = '$codigo_venta'");
+                    $query_add_product_ventas = mysqli_query($conexion, "SELECT SUM(precio_total) AS total FROM so_producto_venta WHERE vendedor_id = '$id' AND codigo_venta = '$codigo_venta'");
                     $row_total = mysqli_fetch_assoc($query_add_product_ventas);
                     $total_cuenta = $row_total['total'];
                     if($total_cuenta == NULL){
@@ -148,7 +148,7 @@
                             <select name="cliente_id" required id="cliente_id" class="form-control">
                                 <option value="">Escoge un Cliente</option>
                                 <?php 
-                                    $query_clientes = mysqli_query($conexion, "SELECT * FROM clientes");
+                                    $query_clientes = mysqli_query($conexion, "SELECT * FROM so_clientes");
                                     while($row_cliente = mysqli_fetch_array($query_clientes)){
                                 ?>
                                 <option value="<?php echo $row_cliente['id']; ?>"><?php echo $row_cliente['nombre']." ".$row_cliente['apellido_p']." ".$row_cliente['apellido_m']; ?></option>

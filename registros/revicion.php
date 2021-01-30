@@ -6,7 +6,7 @@
 
     // echo "$password $email";
 
-    $busqueda = "SELECT * FROM usuarios WHERE correo = '$email' AND password = '$pass' ";
+    $busqueda = "SELECT * FROM so_usuarios WHERE correo = '$email' AND password = '$pass' ";
     $respuesta_verificada = mysqli_query($conexion, $busqueda);
 
     // echo "$busqueda";
